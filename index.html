@@ -1,0 +1,31 @@
+<html>
+  <body>
+    <!--[if IE]>
+    <script type="text/javascript">
+      window.location = 'http://mobileapp.sampleapp.com/';
+    </script>
+    [endif]-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="deviceDetection.js"></script>
+    <script type="text/javascript">
+      $(function() {
+          var detection = new DeviceDetection(navigator.userAgent);
+          if (detection.isApple() && !detection.isDesktop()) {
+              document.location = 'sampleapp://mobile/?fid=CI&confirmationno=';
+              setTimeout(function() {
+                  window.location = 'https://itunes.apple.com/us/app/sampleapp/id12345678?mt=9';
+              }, 500);
+          }
+          if (detection.isAndroid()) {
+              document.location = 'sampleapp://mobile/?fid=CI&confirmationno=%';
+              setTimeout(function() {
+                  window.location = 'https://play.google.com/store/apps/details?id=sampleapp.mrt&hl=en';
+              }, 800);
+          }
+          if (detection.isDesktop()) {
+              window.location = 'http://mobileapp.sampleapp.com/';
+          }
+      });
+    </script>
+  </body>
+</html>
